@@ -29,7 +29,8 @@ function changeRecipient(recipientInput) {
 
 function changeCategories(categoryInput) {
   let newCategories = document.getElementById('categories').value;
-  if (newRecipient.length > 0) {
+  console.log("options", JSON.stringify(newCategories));
+  if (newCategories.length > 0) {
     chrome.storage.sync.set({
       'categories': newCategories
     });
@@ -40,7 +41,9 @@ function changeCategories(categoryInput) {
   }
 }
 
-
+/**
+ * Function to initialize option values and load option form
+ */
 function main() {
   if (window.localStorage == null) {
     alert("LocalStorage must be enabled for changing options.");
@@ -55,9 +58,16 @@ function main() {
     document.getElementById('gmail').checked = true;
 
   chrome.storage.sync.get(['defaultRecipient', 'categories'], function (items) {
-    console.log('sync get',items)
+    console.log('sync get', items)
     document.querySelector('#recipient').value = items.defaultRecipient || defaultRecipient;
-    document.querySelector('#categories').value = items.categories || defaultCategories;
+    if (!items.categories) {
+      document.querySelector('#categories').value = defaultCategories;
+      chrome.storage.sync.set({
+        'categories': defaultCategories
+      });
+    } else {
+      document.querySelector('#categories').value = items.categories;
+    }
   });
 
 
