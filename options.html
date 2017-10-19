@@ -1,0 +1,69 @@
+<!DOCTYPE>
+<!--
+ * Copyright (c) 2012 The Chromium Authors. All rights reserved.  Use of this
+ * source code is governed by a BSD-style license that can be found in the
+ * LICENSE file.
+-->
+<html>
+
+<head>
+  <title>Options for the Send as Email extension</title>
+  <style>
+    #providerSelection {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 10pt;
+    }
+  </style>
+  <script src="options.js"></script>
+</head>
+
+<body>
+  <table class="simple">
+    <tr>
+      <td rowspan="4" valign="top" align="center" width="80">
+        <img src="link.png" width="64" height="64" />
+      </td>
+      <td height="22"></td>
+    </tr>
+    <tr>
+      <td valign="center">
+        <div id="providerSelection">
+          <strong>Select provider to use when emailing a web page address:</strong>
+          <br /><br />
+          <label>
+      <input id="default" type="radio" name="mailto" value="mailto" checked>
+      Mail To<br>
+    </label>
+
+          <label>
+      <input id="gmail" type="radio" name="mailto" value="gmail">Gmail<br>
+    </label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td valign="center">
+        <div id="categoryInput">
+          <strong>Enter comma separated category list:</strong>
+          <br />
+          <label>Categories:
+            <input id="categories" type="text" size="50" placeholder="Enter comma separated list of cateogories" value=""><br>
+          </label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+        <td valign="center">
+          <div id="recipientInput">
+            <strong>Enter default recipient:</strong>
+            <br />
+            <label>Recipient:
+              <input id="recipient" type="text" size="50" placeholder="Enter default email address" value=""><br>
+            </label>
+          </div>
+        </td>
+      </tr>
+  </table>
+</body>
+
+</html>
