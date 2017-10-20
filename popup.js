@@ -24,7 +24,7 @@ function executeMailto() {
             actionUrl += "subject=" + encodeURIComponent(activeTitle) + "&";
         }
         if (activeUrl.length > 0 && activeUrl !== "Error extracting URL") {
-            actionUrl += "body=" + encodeURIComponent(activeUrl);
+            actionUrl += "body=" + encodeURIComponent(activeUrl); 
         }
 
         if (!defaultHandler) {
