@@ -3,14 +3,19 @@ const defaultRecipient = "";
 const defaultCategories = "JS,ML,layout,fun,news";
 
 function toggle(radioButton) {
-  if (window.localStorage == null) {
-    alert('Local storage is required for changing providers');
+
+  if (chrome.storage == null) {
+    alert('Permission for chrome storage is required.');
     return;
   }
   if (document.getElementById('gmail').checked) {
-    window.localStorage.customMailtoUrl = gmail;
+    chrome.storage.sync.set({
+      'customMailtoUrl': gmail
+    });
   } else {
-    window.localStorage.customMailtoUrl = "";
+    chrome.storage.sync.set({
+      'customMailtoUrl': ""
+    });
   }
 }
 
@@ -45,20 +50,18 @@ function changeCategories(categoryInput) {
  * Function to initialize option values and load option form
  */
 function main() {
-  if (window.localStorage == null) {
-    alert("LocalStorage must be enabled for changing options.");
-    document.getElementById('default').disabled = true;
-    document.getElementById('gmail').disabled = true;
+  if (chrome.storage == null) {
+    alert("Permission for chrome storage must be enabled for changing options.");
+    document.querySelector('#default').disabled = true;
+    document.querySelector('#gmail').disabled = true;
     return;
   }
 
-  // Default handler is checked. If we've chosen another provider, we must
-  // change the checkmark.
-  if (window.localStorage.customMailtoUrl == gmail)
-    document.getElementById('gmail').checked = true;
-
-  chrome.storage.sync.get(['defaultRecipient', 'categories'], function (items) {
+  chrome.storage.sync.get(['defaultRecipient', 'categories','customMailtoUrl'], function (items) {
     console.log('sync get', items)
+    if (items.customMailtoUrl == gmail){
+      document.querySelector('#gmail').checked = true;
+    }
     document.querySelector('#recipient').value = items.defaultRecipient || defaultRecipient;
     if (!items.categories) {
       document.querySelector('#categories').value = defaultCategories;
