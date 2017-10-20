@@ -14,6 +14,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector('#defaultRecipient').value = items.defaultRecipient || "";
         document.querySelector('#categories').innerHTML = items.categories || "";
         document.querySelector('#mailto').innerHTML = items.customMailtoUrl || "mail to";
+
+        //add options for category selection
+        let cats = items.categories.split(',');
+        let selectEl = document.querySelector('#category-select');
+        cats.forEach((cat)=>{
+            selectEl.options[selectEl.options.length] = new Option(cat,cat);
+        });
         
     });
   });
