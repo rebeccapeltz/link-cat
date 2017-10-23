@@ -48,7 +48,7 @@
 </head>
 
 <body>
-  <form action="">
+  <form id="send-link" action="">
     <h3>Send a link to specified email:</h3>
     <h5>Link:</h5>
     <p id="link"></p>
@@ -60,7 +60,9 @@
     <h5>Select a category</h5>
 
     <div>
-      <select id="category-select"></select>
+      <select id="category-select">
+        <option value="">Choose Category</option>
+      </select>
     </div>
     <input type="submit" value="Submit"></input>
   </form>

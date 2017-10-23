@@ -2,6 +2,7 @@
 let activeUrl = '';
 let activeTitle = '';
 let activeId = '';
+
 chrome.tabs.query({
     currentWindow: true,
     active: true
@@ -14,23 +15,29 @@ chrome.tabs.query({
 });
 
 
-//TODO category
 function executeMailto() {
-    chrome.storage.sync.get(['customMailtoUrl'], function (item) {
+    chrome.storage.sync.get(['defaultRecipient','customMailtoUrl','selectedCategory'], function (item) {
         let customMailtoUrl = item.customMailtoUrl;
+        let recipient = item.defaultRecipient;
+        let selectedCategory = item.selectedCategory;
+        let subjectCat = selectedCategory.length > 0 ? encodeURIComponent(selectedCategory.toUpperCase() + ': ') : "";
         let defaultHandler = customMailtoUrl == null ? true : (customMailtoUrl.length == 0 ? true : false);
         let actionUrl = "mailto:?";
         if (activeTitle.length > 0) {
-            actionUrl += "subject=" + encodeURIComponent(activeTitle) + "&";
+            actionUrl += "subject=" + subjectCat + encodeURIComponent(activeTitle) + "&";
         }
         if (activeUrl.length > 0 && activeUrl !== "Error extracting URL") {
-            actionUrl += "body=" + encodeURIComponent(activeUrl); 
+            actionUrl += "body=" + encodeURIComponent(activeUrl) + "&"; 
+        }
+        if (recipient.length > 0){
+            actionUrl += "to=" + encodeURIComponent(recipient);
         }
 
         if (!defaultHandler) {
             // separate tab
             let customUrl = customMailtoUrl;
             actionUrl = customUrl.replace("%s", encodeURIComponent(actionUrl));
+            actionUrl = actionUrl.replace("%t",encodeURIComponent(defaultRecipient))
             console.log('Custom url: ' + actionUrl);
             chrome.tabs.create({
                 url: actionUrl
@@ -39,16 +46,21 @@ function executeMailto() {
             // mailto
             console.log('Action url: ' + actionUrl);
             chrome.tabs.update(activeId, {
-                url: action_url
+                url: actionUrl
             });
         }
     });
 }
 
+function setCategory(){
+   let selectedCat =  document.querySelector("#category-select").value;
+    chrome.storage.sync.set({'selectedCategory': selectedCat});
+}
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
     console.log("DOM fully loaded and parsed");
+    
     chrome.storage.sync.get(['defaultRecipient', 'categories', 'customMailtoUrl'], function (items) {
         console.log(items.defaultRecipient);
         console.log("categories", items.categories);
@@ -65,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
         let submitButton = document.querySelector('input[type="submit"]');
         submitButton.addEventListener('click',(event)=>{
+            setCategory();
             executeMailto();
         },false);
     });
