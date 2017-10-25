@@ -1,11 +1,7 @@
 {
-  "name": "Email this page (by Google)",
-  "description": "This extension adds an email button to the toolbar which allows you to email the page link using your default mail client or Gmail.",
-  "version": "1.2.6",
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+  "name": "Categorize and email this page",
+  "description": "Use options to set up categories and a default email recipient. When you click on the extension in the toolbar you can choose a category and send the link in an email.",
+  "version": "1.0",
   "icons": {
     "128": "link.png"
   },
