@@ -8,23 +8,25 @@
 </head>
 
 <body>
-  <form id="send-link" action="">
-    <h3>Send a link to specified email:</h3>
-    <h5>Link:</h5>
-    <p id="link"></p>
-    <h5>To:</h5>
-    <input type="text" id="defaultRecipient" value="" placeholder="Enter email">
-    <br>
-    <h5>Using:</h5>
-    <p id="mailto"></p>
-    <h5>Select a category</h5>
-    <div>
-      <select id="category-select">
-        <option value="">Choose Category</option>
-      </select>
-    </div>
-    <input type="submit" value="Submit"></input>
-  </form>
+  <div class="popup-form">
+    <form id="send-link" action="">
+      <h3>Categorize and Email a Link:</h3>
+      <h5>Link title:</h5>
+      <p id="link"></p>
+      <h5>Send to:</h5>
+      <input type="text" id="defaultRecipient" value="" placeholder="Enter email">
+      <br>
+      <h5>Using:</h5>
+      <p id="mailto"></p>
+      <h5>Select a category</h5>
+      <div>
+        <select id="category-select">
+          <option value="">Choose Category</option>
+        </select>
+      </div>
+      <input type="submit" value="Submit"></input>
+    </form>
+  </div>
 </body>
 
 </html>

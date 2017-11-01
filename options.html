@@ -8,56 +8,53 @@
 </head>
 
 <body>
-  <table class="simple">
-    <tr>
-      <td rowspan="4" valign="top" align="center" width="80">
-        <img src="link.png" width="64" height="64" />
-      </td>
-      <td height="22"></td>
-    </tr>
-    <tr>
-      <td valign="center">
-        <div id="providerSelection">
-          <strong>Select provider to use when emailing a web page address:</strong>
-          <br />
-          <br />
-          <label>
-            <input id="default" type="radio" name="mailto" value="mailto" checked> Mail To
-            <br>
-          </label>
+  <div class="options-container">
+    <p>
+      <img src="link.png" width="64" height="64" />
+      <span class="options-title">Link Cat Options</span>
+    </p>
 
-          <label>
-            <input id="gmail" type="radio" name="mailto" value="gmail">Gmail
-            <br>
-          </label>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td valign="center">
-        <div id="categoryInput">
-          <strong>Enter comma separated category list:</strong>
-          <br />
-          <label>Categories:
-            <input id="categories" type="text" size="50" placeholder="Enter comma separated list of cateogories" value="">
-            <br>
-          </label>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td valign="center">
-        <div id="recipientInput">
-          <strong>Enter default recipient:</strong>
-          <br />
-          <label>Recipient:
-            <input id="recipient" type="text" size="50" placeholder="Enter default email address" value="">
-            <br>
-          </label>
-        </div>
-      </td>
-    </tr>
-  </table>
+    <p>
+      <strong>Select provider to use when emailing a web page address:</strong>
+      <br>
+      <label>
+        <input id="default" type="radio" name="mailto" value="mailto" checked> Mail To
+        <br>
+      </label>
+
+      <label>
+        <input id="gmail" type="radio" name="mailto" value="gmail">Gmail
+        <br>
+      </label>
+    </p>
+    <p id="categoryInput">
+      <strong>Enter comma separated category list:</strong>
+      <br />
+      <label>Categories:
+        <input id="categories" type="text" placeholder="Enter comma separated list of cateogories" value="">
+        <br>
+      </label>
+    </p>
+    <p>
+      <strong>Enter default recipient:</strong>
+      <br />
+      <label>Recipient:
+        <input id="recipient" type="text" placeholder="Enter default email address" value="">
+        <br>
+      </label>
+    </p>
+    <p>
+        <strong>Acknowlegement</strong>
+        <br>
+        Thank you to <a href="http://simpleicon.com/">Simple Icon</a> hosted by <a href="https://www.flaticon.com/packs/simpleicon-interface">Flat Icon</a>
+        <br>
+        via <a href="https://commons.wikimedia.org/wiki/File:Simpleicons_Interface_link-symbol-of-two-chains-links-linked.svg">Wikimedia</a>
+        <br>
+        for the icon used in this site: <img src="link.png" width="16" height="16">
+      </p>
+
+  </div>
+
 </body>
 
 </html>
