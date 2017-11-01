@@ -1,5 +1,5 @@
 {
-  "name": "Categorize and email this page",
+  "name": "Email Cat Link",
   "description": "Use options to set up categories and a default email recipient. When you click on the extension in the toolbar you can choose a category and send the link in an email.",
   "version": "1.0",
   "icons": {
