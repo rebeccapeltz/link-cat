@@ -57,6 +57,10 @@ p {
 .options-container input{
     max-width: 20rem;
 }
+.options-input label{
+    width: 70px;
+    display: inline-block;
+}
 .popup-form p{
     line-height: 2rem;
     padding-left: 5px;

@@ -15,10 +15,11 @@ chrome.tabs.query({
 });
 
 
-function executeMailto() {
+function executeMailto(formRecipient) {
     chrome.storage.sync.get(['defaultRecipient','customMailtoUrl','selectedCategory'], function (item) {
         let customMailtoUrl = item.customMailtoUrl;
-        let recipient = item.defaultRecipient;
+        let storedRecipient = item.defaultRecipient;
+        let recipient = formRecipient || storedRecipient;
         let selectedCategory = item.selectedCategory;
         let subjectCat = selectedCategory.length > 0 ? encodeURIComponent(selectedCategory.toUpperCase() + ': ') : "";
         let defaultHandler = customMailtoUrl == null ? true : (customMailtoUrl.length == 0 ? true : false);
@@ -78,7 +79,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let submitButton = document.querySelector('input[type="submit"]');
         submitButton.addEventListener('click',(event)=>{
             setCategory();
-            executeMailto();
+            let formRecipient = document.querySelector('#defaultRecipient');
+            executeMailto(formRecipient.value);
         },false);
     });
 });
